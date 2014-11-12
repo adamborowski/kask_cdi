@@ -14,6 +14,8 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
+import pl.gda.pg.eti.kask.javaee.enterprise.cdi.MyManager;
 
 /**
  * Created by adam on 15.10.14.
@@ -28,7 +30,7 @@ public class TowerService {
     @Resource
     SessionContext sctx;
 
-    @PersistenceContext
+    @Inject @MyManager
     EntityManager em;
 
     @RolesAllowed({"Admin", "User"})

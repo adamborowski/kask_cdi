@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.logging.Level;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.xml.bind.JAXBContext;
@@ -14,6 +15,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import lombok.extern.java.Log;
 import org.apache.commons.collections.CollectionUtils;
+import pl.gda.pg.eti.kask.javaee.enterprise.cdi.MyManager;
 import pl.gda.pg.eti.kask.javaee.enterprise.entities.Author;
 import pl.gda.pg.eti.kask.javaee.enterprise.entities.Book;
 import pl.gda.pg.eti.kask.javaee.enterprise.entities.Library;
@@ -28,7 +30,7 @@ import pl.gda.pg.eti.kask.javaee.enterprise.entities.ObjectFactory;
 @Log
 public class BookService implements Serializable {
 
-    @PersistenceContext
+    @Inject @MyManager
     EntityManager em;
 
     public BookService() {

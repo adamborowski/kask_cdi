@@ -13,12 +13,14 @@ import javax.ejb.LocalBean;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.servlet.http.HttpSession;
 import lombok.extern.java.Log;
+import pl.gda.pg.eti.kask.javaee.enterprise.cdi.MyManager;
 import pl.gda.pg.eti.kask.javaee.enterprise.entities.User;
 
 /**
@@ -30,7 +32,7 @@ import pl.gda.pg.eti.kask.javaee.enterprise.entities.User;
 @Log
 public class UserService {
 
-    @PersistenceContext
+    @Inject @MyManager
     EntityManager em;
 
     public User findUser(String login) {
