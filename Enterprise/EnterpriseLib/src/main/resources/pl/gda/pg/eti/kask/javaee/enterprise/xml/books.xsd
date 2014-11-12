@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://www.eti.pg.gda.pl/kask/javaee/books"
+            xmlns:tns="http://www.eti.pg.gda.pl/kask/javaee/books"
+            xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.2"
+            elementFormDefault="qualified">
+    <xsd:complexType name="author">
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="surname" type="xsd:string" use="required"/>
+        <xsd:attribute name="id" type="xsd:int" use="required"/>
+    </xsd:complexType>
+    <xsd:complexType name="book">
+        <xsd:sequence>
+            <xsd:element name="author" type="tns:author" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:attribute name="title" type="xsd:string" use="required"/>
+        <xsd:attribute name="id" type="xsd:int" use="required"/>
+        <xsd:attribute name="publishDate" type="xsd:gYear"/>
+    </xsd:complexType>
+    <xsd:element name="library">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="book" type="tns:book" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

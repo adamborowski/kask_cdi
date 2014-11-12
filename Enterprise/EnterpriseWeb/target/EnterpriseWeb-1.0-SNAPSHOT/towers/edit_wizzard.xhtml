@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:metadata>
+    <f:viewParam name="wizzardId" value="#{editWizzard.wizzardId}"/>
+    <f:event type="preRenderView" listener="#{editWizzard.init()}"/>
+</f:metadata>
+
+<body>
+<ui:composition template="/WEB-INF/templates/main.xhtml">
+    <ui:define name="head">
+        <title>Edit wizzard: #{editWizzard.wizzard.name}</title>
+    </ui:define>
+    <ui:define name="content">
+        <h1>Wizzard edit</h1>
+        <h:form>
+            <h:panelGrid columns="3">
+                <h:outputLabel value="name:" for="name"/>
+                <h:inputText id="name" value="#{editWizzard.wizzard.name}" validator="#{bookTitleValidator.validate}"/>
+                <h:message for="name"/>
+                <h:outputLabel value="mana:" for="mana"/>
+                <h:inputText id="mana" value="#{editWizzard.wizzard.mana}"/>
+                <h:message for="mana"/>
+                <h:outputLabel value="environment:" for="environment"/>
+                <h:selectOneMenu id="environment" value="#{editWizzard.wizzard.environment}">
+                    <f:selectItems value="#{editWizzard.environmentsAsSelectItems}"/>
+                </h:selectOneMenu>
+                <h:message for="environment"/>
+                <h:outputLabel value="tower:" for="tower"/>
+                <h:selectOneMenu id="tower" value="#{editWizzard.wizzard.tower}" converter="#{towerConverter}">
+                    <f:selectItems value="#{editWizzard.towersAsSelectItems}"/>
+                </h:selectOneMenu>
+                <h:message for="environment"/>
+            </h:panelGrid>
+            <h:commandButton value="#{msg.save}" action="#{editWizzard.saveWizzard()}"/>
+        </h:form>
+        <h:button value="#{msg.back}" outcome="view_tower.xhtml?towerId=#{editWizzard.wizzard.tower.id}"/>
+    </ui:define>
+</ui:composition>
+</body>
+</html>

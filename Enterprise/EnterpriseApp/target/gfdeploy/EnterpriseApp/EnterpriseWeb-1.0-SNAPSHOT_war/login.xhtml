@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <body class="metro">
+        <ui:composition template="/WEB-INF/templates/main.xhtml">
+            <ui:define name="head">
+                <title>#{msg.books}</title>
+            </ui:define>
+            <ui:define name="content">
+                <h:link outcome="index.xhtml" value="#{msg.books}"/>
+                <form method="post" action="j_security_check" class="a-login-form margin20" >
+                    <span class="input-control text">
+                        <input type="text"  name= "j_username" />
+                        <button class="btn-clear"></button>
+                    </span>
+                    <span class="input-control password">
+                        <input type="password"  name= "j_password" />
+                        <button class="btn-reveal"></button>
+                    </span>
+                    <span>
+                        <input type="submit" value="login"/>
+                    </span>
+                </form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

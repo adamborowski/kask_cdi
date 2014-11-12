@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:metadata>
+    <f:viewParam name="wizzardId" value="#{viewWizzard.wizzardId}" required="true" id="wizzardId"/>
+    <f:event type="preRenderView" listener="#{viewWizzard.init()}"/>
+</f:metadata>
+
+<body>
+<ui:composition template="/WEB-INF/templates/main.xhtml">
+    <ui:define name="head">
+        <title>Wizzard: #{viewWizzard.wizzard.name}</title>
+    </ui:define>
+    <ui:define name="content">
+        <h1>Wizzard view</h1>
+        <h:panelGrid columns="2">
+            <h:outputLabel value="name:" for="name"/>
+            <h:outputText id="name" value="#{viewWizzard.wizzard.name}"/>
+            <h:outputLabel value="mana" for="mana"/>
+            <h:outputText id="mana" value="#{viewWizzard.wizzard.mana}"/>
+            <h:outputLabel value="environment" for="environment"/>
+            <h:outputText id="environment" value="#{viewWizzard.wizzard.environment.toString()}"/>
+            <h:outputLabel value="tower" for="tower"/>
+            <h:outputText id="tower" value="#{viewWizzard.wizzard.tower.name}"/>
+        </h:panelGrid>
+        <h:button value="#{msg.back}" outcome="view_tower.xhtml?towerId=#{viewWizzard.wizzard.tower.id}"/>
+    </ui:define>
+</ui:composition>
+</body>
+</html>

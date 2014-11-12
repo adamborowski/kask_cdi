@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <f:metadata>
+        <f:viewParam name="userId" value="#{editUser.userId}"/>
+        <f:event type="preRenderView" listener="#{editUser.init()}"/>
+    </f:metadata>
+
+    <body>
+        <ui:composition template="/WEB-INF/templates/main.xhtml">
+            <ui:define name="head">
+                <title>Edit user #{editUser.user.login}</title>
+            </ui:define>
+            <ui:define name="content">
+                <h1>User #{editUser.user.login}</h1>
+                <h:form>
+                    <h:panelGrid columns="3">
+                        <c:if test="#{listUsers.adminMode}">
+                            <h:outputLabel value="login: " for="login"/>
+                            <h:inputText id="login" value="#{editUser.user.login}"/>
+                            <h:message for="login"/>
+                            <h:outputLabel value="group: " for="group"/>
+                            <h:inputText id="group" value="#{editUser.user.group}"/>
+                            <h:message for="group"/>
+                        </c:if>
+                        <h:outputLabel value="password:" for="password"/>
+                        <h:inputSecret id="password" value="#{editUser.user.password}" converter="#{passwordConverter}"/>
+                        <h:message for="password"/>
+                    </h:panelGrid>
+                    <h:commandButton value="#{msg.save}" action="#{editUser.saveUser()}"/>
+                </h:form>
+                <h:button value="#{msg.back}" outcome="users.xhtml"/>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

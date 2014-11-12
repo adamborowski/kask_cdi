@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:metadata>
+    <f:viewParam name="towerId" value="#{viewTower.towerId}" required="true" id="towerId"/>
+    <f:event type="preRenderView" listener="#{viewTower.init()}"/>
+</f:metadata>
+
+<body>
+<ui:composition template="/WEB-INF/templates/main.xhtml">
+    <ui:define name="head">
+        <title>Tower: #{viewTower.tower.name}</title>
+    </ui:define>
+    <ui:define name="content">
+        <h1>Tower view - wizzard lists</h1>
+        <h:panelGrid columns="2">
+            <h:outputLabel value="name:" for="name"/>
+            <h:outputText id="name" value="#{viewTower.tower.name}"/>
+            <h:outputLabel value="height" for="height"/>
+            <h:outputText id="height" value="#{viewTower.tower.height}"/>
+        </h:panelGrid>
+        Wizzards inside
+        <h:dataTable value="#{viewTower.tower.wizzards}" var="wizzard" styleClass="table bordered">
+            <h:column>
+                <h:outputText value="#{wizzard.id}"/>
+            </h:column>
+            <h:column>
+                <h:outputText value="#{wizzard.name}"/>
+            </h:column>
+            <h:column>
+                <h:outputText value="#{wizzard.environment.toString()}"/>
+            </h:column>
+            <h:column>
+                <h:outputText value="#{wizzard.mana} *"/>
+            </h:column>
+            <!-- // -->
+            <h:column>
+                <h:button value="#{msg.view}" outcome="view_wizzard.xhtml">
+                    <f:param name="wizzardId" value="#{wizzard.id}"/>
+                </h:button>
+            </h:column>
+            <h:column>
+                <h:button value="#{msg.edit}" outcome="edit_wizzard.xhtml">
+                    <f:param name="wizzardId" value="#{wizzard.id}"/>
+                </h:button>
+            </h:column>
+            <h:column>
+                <h:form>
+                    <h:commandButton value="#{msg.remove}" action="#{viewTower.removeWizzard(wizzard)}"/>
+                </h:form>
+            </h:column>
+        </h:dataTable>
+        <h:button value="#{msg.back}" outcome="list_books.xhtml"/>
+    </ui:define>
+</ui:composition>
+</body>
+</html>

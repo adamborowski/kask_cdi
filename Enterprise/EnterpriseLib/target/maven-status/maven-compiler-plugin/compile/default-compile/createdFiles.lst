@@ -1,0 +1,16 @@
+pl/gda/pg/eti/kask/javaee/enterprise/entities/Audit.class
+pl/gda/pg/eti/kask/javaee/enterprise/entities/validators/GoodManaValidator.class
+pl/gda/pg/eti/kask/javaee/enterprise/entities/User.class
+pl/gda/pg/eti/kask/javaee/enterprise/entities/validators/InPast.class
+pl/gda/pg/eti/kask/javaee/enterprise/entities/package-info.class
+pl/gda/pg/eti/kask/javaee/enterprise/entities/Author.class
+pl/gda/pg/eti/kask/javaee/enterprise/entities/Library.class
+pl/gda/pg/eti/kask/javaee/enterprise/entities/validators/GoodMana.class
+pl/gda/pg/eti/kask/javaee/enterprise/entities/Sorcerer.class
+pl/gda/pg/eti/kask/javaee/enterprise/entities/Environment.class
+pl/gda/pg/eti/kask/javaee/enterprise/entities/Tower.class
+pl/gda/pg/eti/kask/javaee/enterprise/entities/validators/InPastValidator.class
+pl/gda/pg/eti/kask/javaee/enterprise/entities/ObjectFactory.class
+pl/gda/pg/eti/kask/javaee/enterprise/entities/Book.class
+pl/gda/pg/eti/kask/javaee/enterprise/entities/Cover.class
+pl/gda/pg/eti/kask/javaee/enterprise/entities/Comics.class

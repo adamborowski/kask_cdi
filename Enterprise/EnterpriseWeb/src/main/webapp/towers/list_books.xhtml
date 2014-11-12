@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <body>
+        <ui:composition template="/WEB-INF/templates/main.xhtml">
+            <ui:define name="head">
+                <title>#{msg.books}</title>
+            </ui:define>
+            <ui:define name="content">
+                <h1>Tower list</h1>
+                <h:dataTable value="#{listTowers.towers}" var="tower" styleClass="table bordered">
+                    <h:column>
+                        <h:outputText value="#{tower.id}"/>
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="#{tower.user.login}"/>
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="#{tower.name}"/>
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="#{tower.height}m"/>
+                    </h:column>
+                    <h:column>
+                        <h:dataTable value="#{tower.wizzards}" var="wizzard" styleClass="table bordered">
+                            <h:column>
+                                <h:outputText value="#{wizzard.id}"/>
+                            </h:column>
+                            <h:column>
+                                <h:outputText value="#{wizzard.name}"/>
+                            </h:column>
+                            <h:column>
+                                <h:outputText value="#{wizzard.environment.toString()}"/>
+                            </h:column>
+                            <h:column>
+                                <h:outputText value="#{wizzard.mana} *"/>
+                            </h:column>
+                            <h:column>
+                                <h:button value="#{msg.view}" outcome="view_wizzard.xhtml">
+                                    <f:param name="wizzardId" value="#{wizzard.id}"/>
+                                </h:button>
+                            </h:column>
+                            <h:column>
+                                <h:button value="#{msg.edit}" outcome="edit_wizzard.xhtml">
+                                    <f:param name="wizzardId" value="#{wizzard.id}"/>
+                                </h:button>
+                            </h:column>
+                            <h:column>
+                                <h:form>
+                                    <h:commandButton value="#{msg.remove}" action="#{viewTower.removeWizzard(wizzard)}"/>
+                                </h:form>
+                            </h:column>
+                        </h:dataTable>
+                    </h:column>
+                    <h:column>
+                        <h:button value="#{msg.view}" outcome="view_tower.xhtml">
+                            <f:param name="towerId" value="#{tower.id}"/>
+                        </h:button>
+                    </h:column>
+                    <h:column>
+                        <h:button value="#{msg.edit}" outcome="edit_tower.xhtml">
+                            <f:param name="towerId" value="#{tower.id}"/>
+                        </h:button>
+                    </h:column>
+                    <h:column>
+                        <h:form>
+                            <h:commandButton value="#{msg.remove}" action="#{listTowers.removeTower(tower)}"/>
+                        </h:form>
+                    </h:column>
+                </h:dataTable>
+                <h:button value="new tower" outcome="edit_tower.xhtml"/>
+                <h:button value="new wizzard" outcome="edit_wizzard.xhtml" style="margin-left:10px;"/>
+                <h:form>
+                    <h:commandButton  value="training 13" action="#{listTowers.training(13)}"/>
+                    <h:commandButton value="training 666" action="#{listTowers.training(666)}"/>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

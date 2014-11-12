@@ -1,0 +1,15 @@
+/* 
+    Document   : styles
+    Created on : Oct 10, 2013, 10:51:28 PM
+    Author     : psysiu
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+table, tr, td {
+    border: 1px solid black;
+}

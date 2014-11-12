@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.0"
+              xmlns="http://java.sun.com/xml/ns/javaee" 
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+
+    <application>
+        <!--Support languages.-->
+        <locale-config>
+            <supported-locale>en</supported-locale>
+            <supported-locale>pl</supported-locale>
+        </locale-config>
+        <!--Global JSF localized UI messages.-->
+        <resource-bundle>
+            <base-name>pl.gda.pg.eti.kask.javaee.enterprise.view.messages</base-name>
+            <var>msg</var>
+        </resource-bundle>
+        <!--Global JSF localized validator, errors, warings, etc. messages.-->
+        <message-bundle>
+            pl.gda.pg.eti.kask.javaee.enterprise.view.validation
+        </message-bundle>
+    </application>
+</faces-config>

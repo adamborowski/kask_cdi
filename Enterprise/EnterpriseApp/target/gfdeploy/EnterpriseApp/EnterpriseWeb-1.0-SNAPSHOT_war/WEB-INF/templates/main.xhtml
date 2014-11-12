@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <ui:insert name="head"/>
+        <h:outputStylesheet name="metro-bootstrap.min.css"/>
+        <h:outputStylesheet name="jquery-ui.min.css"/>
+        <h:outputStylesheet name="iconFont.min.css"/>
+        <h:outputStylesheet name="compass/stylesheets/screen.css"/>
+        <h:outputScript name="jquery-2.1.1.min.js"/>
+        <h:outputScript name="jquery-ui.min.js"/>
+        <h:outputScript name="metro.min.js"/>
+    </h:head>
+
+    <h:body styleClass="metro">
+        <nav class="navigation-bar dark">
+            <div class="navigation-bar-content">
+                <div class="element">
+                    <a class="dropdown-toggle" href="#">
+                        Wizzards with RBAC
+                    </a>
+                    <ul class="dropdown-menu" data-role="dropdown">
+                        <li><a href="#{request.contextPath}/faces/index.xhtml">Main</a></li>
+                        <li>
+                            <a href="#" class="dropdown-toggle">Active users</a>
+                            <ul class="dropdown-menu place-right" data-role="dropdown">
+                            </ul>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#" class="dropdown-toggle">Currencies</a>
+                            <ul class="dropdown-menu place-right" data-role="dropdown" style="width:300px">
+                            </ul>
+
+                        </li>
+
+                    </ul>
+                </div>
+
+                <span class="element-divider"></span>
+                <a class="element brand" href="#"><span class="icon-spin"></span></a>
+                <a class="element brand" href="#"><span class="icon-printer"></span></a>
+                <span class="element-divider"></span>
+
+                <div class="element input-element">
+                    <form>
+                        <div class="input-control text">
+                            <input type="text" placeholder="Search..."/>
+                            <button class="btn-search"></button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="element place-right">
+                    <a class="dropdown-toggle" href="#">
+                        <span class="icon-cog"></span>
+                        <span class="margin20">
+                            <c:choose>
+                                <c:when test="#{listUsers.currentUser==null}">
+                                    NIEZALOGOWANO
+                                </c:when>
+                                <c:otherwise>
+                                    #{listUsers.currentUser.login} (uprawnienia #{listUsers.currentUser.group}a)        
+                                </c:otherwise>
+                            </c:choose>
+
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu place-right" data-role="dropdown">
+                        <li><h:form><h:commandLink action="#{listUsers.logout()}">Wyloguj</h:commandLink></h:form></li>
+                    </ul>
+                </div>
+                <span class="element-divider place-right"></span>
+                <a class="element place-right" href="#"><span class="icon-locked-2"></span></a>
+                <span class="element-divider place-right"></span>
+
+
+            </div>
+        </nav>
+        <!--<% for (String flash : ((Flashes) session.getAttribute("flashes")).getMessages()) { %>-->
+        <!--<div class="margin10 fg-white notice marker-on-top bg-<%=r.getString(flash+ ".color")%>">-->
+        <!--<%= flash.startsWith("message.") ? r.getString(flash) : flash %>-->
+        <!--</div>-->
+        <!--<% } %>-->
+        <div id="top">
+            <h3>Towers - Dżejtłii</h3>
+        </div>
+
+        <div id="content">
+            <ui:insert name="content"/>
+        </div>
+
+    </h:body>
+
+</html>

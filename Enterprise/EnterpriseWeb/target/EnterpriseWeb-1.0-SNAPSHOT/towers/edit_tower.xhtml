@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <f:metadata>
+        <f:viewParam name="towerId" value="#{editTower.towerId}"/>
+        <f:event type="preRenderView" listener="#{editTower.init()}"/>
+    </f:metadata>
+
+    <body>
+        <ui:composition template="/WEB-INF/templates/main.xhtml">
+            <ui:define name="head">
+                <title>Edit tower: #{editTower.tower.name}</title>
+            </ui:define>
+            <ui:define name="content">
+                <h1>Tower edit</h1>
+                <h:form>
+                    <h:panelGrid columns="3">
+                        <h:outputLabel value="name:" for="name"/>
+                        <h:inputText id="name" value="#{editTower.tower.name}" validator="#{bookTitleValidator.validate}"/>
+                        <h:message for="name"/>
+                        <h:outputLabel value="height [m]:" for="height"/>
+                        <h:inputText id="height" value="#{editTower.tower.height}"/>
+                        <h:message for="height"/>
+                    </h:panelGrid>
+                    <h:commandButton value="#{msg.save}" action="#{editTower.saveTower()}"/>
+                </h:form>
+                <h:button value="#{msg.back}" outcome="list_books.xhtml"/>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
