@@ -8,4 +8,9 @@
             pl.gda.pg.eti.kask.javaee.enterprise.ranking.SortedTopBooks
         </class>
     </decorators>
+    <interceptors>
+<!--        <class>
+            pl.gda.pg.eti.kask.javaee.enterprise.ZachlannoscImpl
+        </class>-->
+    </interceptors>
 </beans>

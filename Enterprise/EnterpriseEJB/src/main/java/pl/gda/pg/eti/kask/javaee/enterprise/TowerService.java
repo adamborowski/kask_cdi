@@ -116,6 +116,7 @@ public class TowerService {
         }
     }
 
+    @Zachlannosc
     @RolesAllowed({"Admin", "User"})
     public void saveWizzard(Sorcerer wizzard) {
         if (userService.canAccess(wizzard.getTower().getUser())) {
