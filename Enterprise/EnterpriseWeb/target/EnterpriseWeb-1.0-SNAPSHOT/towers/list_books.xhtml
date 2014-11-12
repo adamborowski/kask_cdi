@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <body>
         <ui:composition template="/WEB-INF/templates/main.xhtml">
@@ -76,6 +77,79 @@
                 <h:form>
                     <h:commandButton  value="training 13" action="#{listTowers.training(13)}"/>
                     <h:commandButton value="training 666" action="#{listTowers.training(666)}"/>
+                </h:form>
+                <!--DUPA-->
+                <h:form id="form">
+                    <p:dataTable value="#{listTowers.towers}" var="tower" id="table" editable="true">
+                        <!--<p:ajax event="rowEdit" listener="#!{listTowers.onEdit}" update=":form:table"/>-->  
+                        <p:column width="40">
+                            <f:facet name="header"><h:outputText value="ID"/></f:facet>
+                            <h:outputText value="#{tower.id}"/>
+                        </p:column>
+                        <p:column width="110">
+                            <f:facet name="header"><h:outputText value="#{msg.name}"/></f:facet>
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{tower.name}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{tower.name}" id="name"/>
+                                    <p:message for="name"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column width="*">
+                            <f:facet name="header"><h:outputText value="wizzards"/></f:facet>
+                            <p:dataTable value="#{tower.wizzards}" var="wizzard" styleClass="table bordered">
+                                <p:column>
+                                    <h:outputText value="#{wizzard.id}"/>
+                                </p:column>
+                                <p:column>
+                                    <h:outputText value="#{wizzard.name}"/>
+                                </p:column>
+                                <p:column>
+                                    <h:outputText value="#{wizzard.environment.toString()}"/>
+                                </p:column>
+                                <p:column>
+                                    <h:outputText value="#{wizzard.mana} *"/>
+                                </p:column>
+                                <p:column>
+                                    <p:button value="#{msg.view}" outcome="view_wizzard.xhtml">
+                                        <f:param name="wizzardId" value="#{wizzard.id}"/>
+                                    </p:button>
+                                </p:column>
+                                <p:column>
+                                    <p:button value="#{msg.edit}" outcome="edit_wizzard_1.xhtml">
+                                        <f:param name="wizzardId" value="#{wizzard.id}"/>
+                                    </p:button>
+                                </p:column>
+                                <p:column>
+                                    <p:commandButton value="#{msg.remove}" action="#{viewTower.removeWizzard(wizzard)}"  update=":form:table"/>
+                                </p:column>
+                            </p:dataTable>
+                        </p:column>
+                        <p:column width="120">
+                            <f:facet name="header"><h:outputText value="#{msg.view}"/></f:facet>
+                            <p:button value="#{msg.view}" outcome="view_tower.xhtml">
+                                <f:param name="towerId" value="#{tower.id}" />
+                            </p:button>
+                        </p:column>
+                        <p:column width="120">
+                            <f:facet name="header"><h:outputText value="#{msg.edit}"/></f:facet>
+                            <p:button value="#{msg.edit}" outcome="edit_tower.xhtml">
+                                <f:param name="towerId" value="#{tower.id}" />
+                            </p:button>
+                        </p:column>
+                        <p:column width="120">
+                            <f:facet name="header"><h:outputText value="#{msg.remove}"/></f:facet>
+                            <p:commandButton value="#{msg.remove}" process="@this" actionListener="#{listTowers.removeTower(tower)}" update=":form:table"/>
+                        </p:column>
+                    </p:dataTable>
+
+                    <p:poll interval="3" widgetVar="poll" autoStart="false" listener="#{listTowers.updateTowers}" update=":form:table" /> 
+                    <p:button value="new tower" outcome="edit_tower.xhtml"/>
+                    <p:button value="new wizzard" outcome="edit_wizzard_1.xhtml"/>
+                    <p:button value="#{msg.back}" outcome="/index.xhtml"/>
                 </h:form>
             </ui:define>
         </ui:composition>

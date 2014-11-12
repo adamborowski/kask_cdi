@@ -1,4 +1,4 @@
-    package pl.gda.pg.eti.kask.javaee.enterprise.entities;
+package pl.gda.pg.eti.kask.javaee.enterprise.entities;
 
 import java.io.Serializable;
 import lombok.*;
@@ -18,6 +18,7 @@ import javax.xml.bind.annotation.*;
 @Table(name = "wizzards")
 @NamedQueries({
     @NamedQuery(name = "Sorcerer.findAll", query = "SELECT b FROM Sorcerer b"),
+    @NamedQuery(name = "Sorcerer.findBest", query = "SELECT b FROM Sorcerer b ORDER BY b.mana desc"),
     @NamedQuery(name = "Sorcerer.training", query = "UPDATE Sorcerer b set b.mana=b.mana+:amount")
 })
 public class Sorcerer implements Serializable {
@@ -32,7 +33,7 @@ public class Sorcerer implements Serializable {
     protected String name;
     @Column
     @XmlAttribute(name = "mana", required = true)
-    @GoodMana(maximumMana = 1234, dividableBy = 5)
+    @GoodMana(maximumMana = 1000, dividableBy = 5)
     protected Integer mana;
     @Column
     @Enumerated(EnumType.STRING)

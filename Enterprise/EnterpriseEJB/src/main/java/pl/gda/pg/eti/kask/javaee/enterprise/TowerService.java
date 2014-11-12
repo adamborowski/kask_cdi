@@ -14,6 +14,7 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
+import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import pl.gda.pg.eti.kask.javaee.enterprise.cdi.MyManager;
 
@@ -25,12 +26,15 @@ import pl.gda.pg.eti.kask.javaee.enterprise.cdi.MyManager;
 @Log
 public class TowerService {
 
+    @Inject
+    Event<Sorcerer> newSorcerer;
     @EJB
     private UserService userService;
     @Resource
     SessionContext sctx;
 
-    @Inject @MyManager
+    @Inject
+    @MyManager
     EntityManager em;
 
     @RolesAllowed({"Admin", "User"})
@@ -83,6 +87,7 @@ public class TowerService {
     public void removeWizzard(Sorcerer wizzard) {
         if (userService.canAccess(wizzard.getTower().getUser())) {
             em.remove(em.merge(wizzard));
+            newSorcerer.fire(wizzard);
         }
     }
 
@@ -93,9 +98,13 @@ public class TowerService {
         }
     }
 
+    public List getBestWizzards(int amount) {
+        return em.createNamedQuery("Sorcerer.findBest").setMaxResults(amount).getResultList();
+    }
+
     @RolesAllowed({"Admin", "User"})
     public void saveTower(Tower tower) {
-        System.out.println("IDDDD: "+tower.getId());
+        System.out.println("IDDDD: " + tower.getId());
         if (tower.getId() == null) {
             em.persist(tower);
             tower.setUser(userService.getCurrentUser());
@@ -112,6 +121,7 @@ public class TowerService {
         if (userService.canAccess(wizzard.getTower().getUser())) {
             if (wizzard.getId() == null) {
                 em.persist(wizzard);
+                newSorcerer.fire(wizzard);
             } else {
                 em.merge(wizzard);
             }

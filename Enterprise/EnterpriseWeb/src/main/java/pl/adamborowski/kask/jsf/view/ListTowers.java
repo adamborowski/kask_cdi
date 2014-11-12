@@ -52,12 +52,18 @@ public class ListTowers implements Serializable {
         towerService.removeTower(tower);
         towers.remove(tower);
     }
-    
-    public void training(int amt){
-        
+
+    public void training(int amt) {
+
         towerService.trainWizzards(amt);
-        wizzards=getWizzards();
+        wizzards = getWizzards();
     }
 
+    public void updateTowers() {
+        towers = towerService.findAllTowers();
+        for (Tower t : towers) {
+            t.getWizzards();
+        }
+    }
 
 }

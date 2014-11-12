@@ -2,6 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <body class="metro">
         <ui:composition template="/WEB-INF/templates/main.xhtml">
@@ -10,8 +12,26 @@
             </ui:define>
             <ui:define name="content">
                 witaj!
-                <h:link outcome="towers/list_books.xhtml" value="#{msg.books}" class="bg-darkBrown fg-white padding10 margin10 block"/>
+                <h:link outcome="towers/list_books.xhtml" value="towers &amp; wizz" class="bg-darkBrown fg-white padding10 margin10 block"/>
                 <h:link outcome="towers/users.xhtml" value="użytkownicy" class="bg-darkOrange fg-white padding10 margin10 block"/>
+
+                <p:socket channel="/notifications">
+                    <p:ajax event="message" update="@all"/>
+                </p:socket>  
+                <p:dataTable value="#{listTopBooks.books}" var="wizzard">
+                    <p:column>
+                        <f:facet name="header"><h:outputText value="ID"/></f:facet>
+                        <h:outputText value="#{wizzard.id}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header"><h:outputText value="nazwa"/></f:facet>
+                        <h:outputText value="#{wizzard.name}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header"><h:outputText value="mana"/></f:facet>
+                        <h:outputText value="#{wizzard.mana}"/>
+                    </p:column>
+                </p:dataTable>
             </ui:define>
         </ui:composition>
     </body>
