@@ -19,27 +19,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import javax.ejb.EJB;
+import javax.enterprise.context.Conversation;
+import javax.enterprise.context.ConversationScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  * @author psysiu
  */
-@ViewScoped
-@ManagedBean
+@ConversationScoped
+@Named
 @Log
 public class EditWizzard implements Serializable {
 
+    @Inject
+    Conversation conv;
     @EJB
-     TowerService towerService;
+    TowerService towerService;
 
     @Getter
     @Setter
     private int wizzardId;
 
-
     @Getter
     @Setter
     private Sorcerer wizzard;
-
 
     public void setTowerService(TowerService towerService) {
         this.towerService = towerService;
@@ -56,6 +60,11 @@ public class EditWizzard implements Serializable {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("error/404.xhtml");
             } catch (IOException ex) {
                 log.log(Level.SEVERE, null, ex);
+            }
+        }
+        else{
+            if (conv.isTransient()) {
+                conv.begin();
             }
         }
         //todo zapisać poprzedni tower??
@@ -87,6 +96,11 @@ public class EditWizzard implements Serializable {
 
     public String saveWizzard() {
         towerService.saveWizzard(wizzard);
+        conv.end();
         return "view_tower?faces-redirect=true&towerId=" + wizzard.getTower().getId();
+    }
+    
+    public String getCID() {
+        return conv.getId();
     }
 }

@@ -32,7 +32,7 @@ public class Sorcerer implements Serializable {
     protected String name;
     @Column
     @XmlAttribute(name = "mana", required = true)
-    @GoodMana(maximumMana = 1234, dividableBy = 666)
+    @GoodMana(maximumMana = 1234, dividableBy = 5)
     protected Integer mana;
     @Column
     @Enumerated(EnumType.STRING)

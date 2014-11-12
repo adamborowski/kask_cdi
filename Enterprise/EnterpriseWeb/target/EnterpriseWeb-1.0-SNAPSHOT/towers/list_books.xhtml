@@ -44,7 +44,7 @@
                                 </h:button>
                             </h:column>
                             <h:column>
-                                <h:button value="#{msg.edit}" outcome="edit_wizzard.xhtml">
+                                <h:button value="#{msg.edit}" outcome="edit_wizzard_1.xhtml">
                                     <f:param name="wizzardId" value="#{wizzard.id}"/>
                                 </h:button>
                             </h:column>
@@ -72,7 +72,7 @@
                     </h:column>
                 </h:dataTable>
                 <h:button value="new tower" outcome="edit_tower.xhtml"/>
-                <h:button value="new wizzard" outcome="edit_wizzard.xhtml" style="margin-left:10px;"/>
+                <h:button value="new wizzard" outcome="edit_wizzard_1.xhtml" style="margin-left:10px;"/>
                 <h:form>
                     <h:commandButton  value="training 13" action="#{listTowers.training(13)}"/>
                     <h:commandButton value="training 666" action="#{listTowers.training(666)}"/>
