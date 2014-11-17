@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 @NoArgsConstructor
@@ -20,6 +21,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "towers")
 @NamedQuery(name = "Tower.findAll", query = "SELECT b FROM Tower b")
+@XmlRootElement
 public class Tower implements Serializable {
 
     @XmlElement(required = true, name = "wizzard")
@@ -41,4 +43,9 @@ public class Tower implements Serializable {
     @ManyToOne()
     @JoinColumn(name = "user_id")
     protected User user;
+
+    @java.lang.SuppressWarnings(value = "all")
+    @XmlTransient
+    public List<Sorcerer> getWizzards() {
+    }
 }

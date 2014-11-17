@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import lombok.AllArgsConstructor;
@@ -41,6 +42,7 @@ import lombok.ToString;
 @Entity
 @Table(name = "users")
 @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
+@XmlRootElement
 public class User implements Serializable {
 
     @XmlAttribute
@@ -65,4 +67,9 @@ public class User implements Serializable {
     
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     protected List<Tower> towers = new ArrayList<>();
+
+    @java.lang.SuppressWarnings(value = "all")
+    @XmlTransient
+    public List<Tower> getTowers() {
+    }
 }
