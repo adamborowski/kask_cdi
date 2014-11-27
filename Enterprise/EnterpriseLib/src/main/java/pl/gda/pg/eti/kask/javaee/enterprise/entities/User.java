@@ -68,8 +68,4 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     protected List<Tower> towers = new ArrayList<>();
 
-    @java.lang.SuppressWarnings(value = "all")
-    @XmlTransient
-    public List<Tower> getTowers() {
-    }
 }

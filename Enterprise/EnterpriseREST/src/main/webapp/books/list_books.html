@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Books</title>
+        <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    </head>
+    <body>
+        <h1>Books</h1>
+        <div id="books">
+        </div>
+
+        <script>
+            function loadBooks() {
+                $.getJSON('../resources/books', function (data) {
+                    renderBooksTable(data.book);
+                });
+            }
+
+            function renderBooksTable(books) {
+                var table = $('<table>').appendTo($('#books'));
+                $.each(books, function (i, book) {
+                    var row = $('<tr>').appendTo(table);
+                    $('<td>').text(book.id).appendTo(row);
+                    $('<td>').text(book.title).appendTo(row);
+                    var authors_td = $('<td>').appendTo(row);
+                    renderAuthorsTable(authors_td, book.author);
+                    var edit_td = $('<td>').appendTo(row);
+                    renderEditButton(edit_td, book.id, "edit_book.html?book_id=");
+                });
+            }
+            
+            function renderAuthorsTable(td, authors) {
+                var table = $('<table>').appendTo(td);
+                $.each(authors, function (i, author) {
+                    var row = $('<tr>').appendTo(table);
+                    $('<td>').text(author.id).appendTo(row);
+                    $('<td>').text(author.name).appendTo(row);
+                    $('<td>').text(author.surname).appendTo(row);
+                    var edit_td = $('<td>').appendTo(row);
+                    renderEditButton(edit_td, author.id, "edit_author.html?author_id=");
+                });
+            }
+            
+            function renderEditButton(td, id, link) {
+                var uri = link + id;
+                var a = $('<a>').attr('href', encodeURI(uri)).appendTo(td);
+                $('<button>').text("Edit").appendTo(a);
+            }
+
+            $(document).ready(function () {
+                loadBooks();
+            });
+        </script>
+    </body>
+</html>

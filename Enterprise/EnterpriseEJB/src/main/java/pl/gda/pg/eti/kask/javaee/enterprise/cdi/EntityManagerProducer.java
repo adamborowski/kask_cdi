@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  */
 public class EntityManagerProducer {
 
-    @PersistenceContext
+    @PersistenceContext(name = "JSFJPA_PU")
     EntityManager em;
 
     @Produces

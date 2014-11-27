@@ -69,6 +69,10 @@
             <url-pattern>/faces/towers/*</url-pattern>
             <url-pattern>/towers/*</url-pattern>
         </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>user</web-resource-name>
+            <url-pattern>/webresources/*</url-pattern>
+        </web-resource-collection>
         <auth-constraint>
             <role-name>Admin</role-name>
             <role-name>User</role-name>
@@ -78,12 +82,8 @@
         </user-data-constraint>
     </security-constraint>
     <login-config>
-        <auth-method>FORM</auth-method>
+        <auth-method>BASIC</auth-method>
         <realm-name>bookRealm</realm-name>
-        <form-login-config>
-            <form-login-page>/faces/login.xhtml</form-login-page>
-            <form-error-page>/faces/error/login.xhtml</form-error-page>
-        </form-login-config>
     </login-config>
     <security-role>
         <role-name>Admin</role-name>

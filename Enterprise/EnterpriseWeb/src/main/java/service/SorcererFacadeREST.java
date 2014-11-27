@@ -7,6 +7,7 @@ package service;
 
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
@@ -17,6 +18,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import pl.gda.pg.eti.kask.javaee.enterprise.cdi.MyManager;
 import pl.gda.pg.eti.kask.javaee.enterprise.entities.Sorcerer;
 
 /**
@@ -24,10 +26,12 @@ import pl.gda.pg.eti.kask.javaee.enterprise.entities.Sorcerer;
  * @author adam
  */
 @Stateless
-@Path("pl.gda.pg.eti.kask.javaee.enterprise.entities.sorcerer")
+@Path("sorcerers")
 public class SorcererFacadeREST extends AbstractFacade<Sorcerer> {
-    @PersistenceContext(unitName = "")
-    private EntityManager em;
+
+    @Inject
+    @MyManager
+    EntityManager em;
 
     public SorcererFacadeREST() {
         super(Sorcerer.class);
@@ -85,5 +89,5 @@ public class SorcererFacadeREST extends AbstractFacade<Sorcerer> {
     protected EntityManager getEntityManager() {
         return em;
     }
-    
+
 }

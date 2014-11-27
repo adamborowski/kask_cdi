@@ -6,10 +6,12 @@ import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
 
 @NoArgsConstructor
 @ToString
@@ -21,31 +23,27 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "towers")
 @NamedQuery(name = "Tower.findAll", query = "SELECT b FROM Tower b")
-@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "author")
 public class Tower implements Serializable {
 
-    @XmlElement(required = true, name = "wizzard")
-    //
     @OneToMany(mappedBy = "tower", cascade = CascadeType.ALL)
+    @XmlTransient
     protected List<Sorcerer> wizzards = new ArrayList<>();
     @Column
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @XmlAttribute(name = "id", required = true)
+    @XmlTransient
     protected Integer id;
     @Column
-    @XmlAttribute(name = "name", required = true)
+    @XmlTransient
     protected String name;
     @Column
-    @XmlAttribute(name = "height")
+    @XmlTransient
     protected Integer height;
     @XmlTransient
     @ManyToOne()
     @JoinColumn(name = "user_id")
     protected User user;
 
-    @java.lang.SuppressWarnings(value = "all")
-    @XmlTransient
-    public List<Sorcerer> getWizzards() {
-    }
 }

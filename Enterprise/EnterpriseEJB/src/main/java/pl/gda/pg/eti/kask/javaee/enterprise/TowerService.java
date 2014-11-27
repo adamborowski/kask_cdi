@@ -6,7 +6,6 @@ import pl.gda.pg.eti.kask.javaee.enterprise.entities.Tower;
 import lombok.extern.java.Log;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.annotation.security.RolesAllowed;
@@ -30,6 +29,9 @@ public class TowerService {
     Event<Sorcerer> newSorcerer;
     @EJB
     private UserService userService;
+    public EntityManager getEm() {
+        return em;
+    }
     @Resource
     SessionContext sctx;
 

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://wadl.dev.java.net/2009/02"><doc
+        jersey:generatedBy="Jersey: 1.18.2 10/26/2014 03:51 PM"
+        xmlns:jersey="http://jersey.java.net/"/><doc
+        title="A message in the WADL"
+        xml:lang="en"><![CDATA[This is added to the start of the generated application.wadl]]></doc><grammars/><resources
+            base="https://localhost:8181/RESTServices"><resource
+                path="/books"><method id="findBooks"
+                        name="GET"><request><param name="offset"
+                        style="query" type="xs:int" default="0"
+                        xmlns:xs="http://www.w3.org/2001/XMLSchema"/><param
+                        name="limit" style="query" type="xs:int"
+                        default="0"
+                        xmlns:xs="http://www.w3.org/2001/XMLSchema"/></request><response><representation
+                        mediaType="application/xml"/><representation
+                mediaType="application/json"/></response></method><method
+                id="saveNewBook" name="POST"><request><representation
+                        mediaType="application/json"/></request><response><representation
+                mediaType="*/*"/></response></method><resource
+                    path="/authors"><method id="findAuthors"
+                            name="GET"><response><representation
+                    mediaType="application/json"/></response></method><method
+                    id="saveNewAuthor"
+                            name="POST"><request><representation
+                                mediaType="application/x-www-form-urlencoded"><param
+                                name="name" style="query"
+                                type="xs:string"
+                                xmlns:xs="http://www.w3.org/2001/XMLSchema"/><param
+                                name="surname" style="query"
+                                type="xs:string"
+                            xmlns:xs="http://www.w3.org/2001/XMLSchema"/></representation></request><response><representation
+                mediaType="*/*"/></response></method></resource><resource
+                    path="/authors/{id:[0-9]+}/books"><param name="id"
+                    style="template" type="xs:int"
+                    xmlns:xs="http://www.w3.org/2001/XMLSchema"/><method
+                    id="findAuthorBooks"
+                            name="GET"><response><representation
+                mediaType="*/*"/></response></method></resource><resource
+                    path="/{id:[0-9]+}"><param name="id"
+                    style="template" type="xs:int"
+                    xmlns:xs="http://www.w3.org/2001/XMLSchema"/><method
+                    id="findBookJson"
+                            name="GET"><response><representation
+                    mediaType="application/json"/></response></method><method
+                    id="findBookXML"
+                            name="GET"><response><representation
+                    mediaType="application/xml"/></response></method><method
+                    id="saveBook" name="PUT"><request><representation
+                            mediaType="application/json"/></request><response><representation
+                    mediaType="*/*"/></response></method><method
+                    id="deleteBook"
+                            name="DELETE"><response><representation
+                mediaType="*/*"/></response></method></resource><resource
+                    path="/{id:[0-9]+}/authors"><param name="id"
+                    style="template" type="xs:int"
+                    xmlns:xs="http://www.w3.org/2001/XMLSchema"/><method
+                    id="findBookAuthors"
+                            name="GET"><response><representation
+                            mediaType="application/xml"/><representation
+                mediaType="application/json"/></response></method></resource><resource
+                    path="/{id:[0-9]+}/title"><param name="id"
+                    style="template" type="xs:int"
+                    xmlns:xs="http://www.w3.org/2001/XMLSchema"/><method
+                    id="findBookTitle"
+                            name="GET"><response><representation mediaType="text/plain"/></response></method></resource></resource></resources></application>

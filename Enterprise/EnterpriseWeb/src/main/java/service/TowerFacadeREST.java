@@ -6,9 +6,10 @@
 package service;
 
 import java.util.List;
+import javax.ejb.EJB;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -17,17 +18,21 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import pl.gda.pg.eti.kask.javaee.enterprise.ManagerService;
+import pl.gda.pg.eti.kask.javaee.enterprise.TowerService;
 import pl.gda.pg.eti.kask.javaee.enterprise.entities.Tower;
 
 /**
  *
  * @author adam
  */
-@Stateless
-@Path("pl.gda.pg.eti.kask.javaee.enterprise.entities.tower")
+@Path("towers")
 public class TowerFacadeREST extends AbstractFacade<Tower> {
-    @PersistenceContext(unitName = "")
-    private EntityManager em;
+
+    @EJB
+    ManagerService ms;
+    @EJB
+    TowerService ts;
 
     public TowerFacadeREST() {
         super(Tower.class);
@@ -61,10 +66,11 @@ public class TowerFacadeREST extends AbstractFacade<Tower> {
     }
 
     @GET
-    @Override
     @Produces({"application/xml", "application/json"})
-    public List<Tower> findAll() {
-        return super.findAll();
+    public Tower findAllTowers() {
+        final List<Tower> towers = ts.findAllTowers();
+        return towers.get(0);
+//        return new Tower();
     }
 
     @GET
@@ -83,7 +89,7 @@ public class TowerFacadeREST extends AbstractFacade<Tower> {
 
     @Override
     protected EntityManager getEntityManager() {
-        return em;
+        return ms.getEm();
     }
-    
+
 }

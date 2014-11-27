@@ -7,6 +7,7 @@ package service;
 
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
@@ -17,6 +18,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import pl.gda.pg.eti.kask.javaee.enterprise.cdi.MyManager;
 import pl.gda.pg.eti.kask.javaee.enterprise.entities.User;
 
 /**
@@ -24,10 +26,9 @@ import pl.gda.pg.eti.kask.javaee.enterprise.entities.User;
  * @author adam
  */
 @Stateless
-@Path("pl.gda.pg.eti.kask.javaee.enterprise.entities.user")
+@Path("users")
 public class UserFacadeREST extends AbstractFacade<User> {
-    @PersistenceContext(unitName = "")
-    private EntityManager em;
+    @Inject @MyManager EntityManager em;
 
     public UserFacadeREST() {
         super(User.class);
