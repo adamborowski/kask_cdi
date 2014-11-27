@@ -3,10 +3,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-    <artifactId>Enterprise</artifactId>
-    <groupId>pl.gda.pg.eti.kask.javaee</groupId>
-    <version>1.0-SNAPSHOT</version>
-  </parent>
+        <artifactId>Enterprise</artifactId>
+        <groupId>pl.gda.pg.eti.kask.javaee</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 
     <groupId>pl.gda.pg.eti.kask.javaee</groupId>
     <artifactId>EnterpriseREST</artifactId>
@@ -44,6 +44,11 @@
             <artifactId>lombok</artifactId> 
             <version>1.14.8</version> 
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.owlike</groupId>
+            <artifactId>genson</artifactId>
+            <version>1.1</version>
         </dependency>
     </dependencies>
 
@@ -147,6 +152,7 @@
                         <version>1.1.4</version>
                     </dependency>
                 </dependencies>
+                
             </plugin>
         </plugins>
     </build>
