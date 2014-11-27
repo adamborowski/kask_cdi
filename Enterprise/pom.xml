@@ -11,6 +11,6 @@
         <module>EnterpriseWeb</module>
         <module>EnterpriseEJB</module>
         <module>EnterpriseLib</module>
-    <module>EnterpriseREST</module>
-  </modules>
+        <module>EnterpriseREST</module>
+    </modules>
 </project>

@@ -2,7 +2,6 @@ package pl.gda.pg.eti.kask.javaee.enterprise.entities;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Entity;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -30,6 +29,6 @@ import lombok.ToString;
 @XmlRootElement(name = "library")
 public class Library {
     
-    @XmlElement(name = "book")
-    private List<Book> books = new ArrayList<>();
+    @XmlElement(name = "tower")
+    private List<Tower> towers = new ArrayList<>();
 }

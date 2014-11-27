@@ -10,5 +10,11 @@
       <context-root>/EnterpriseWeb</context-root>
     </web>
   </module>
+  <module>
+    <web>
+      <web-uri>EnterpriseREST-1.0-SNAPSHOT.war</web-uri>
+      <context-root>/EnterpriseREST</context-root>
+    </web>
+  </module>
   <library-directory>lib</library-directory>
 </application>

@@ -1,0 +1,67 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema elementFormDefault="qualified" version="1.0" targetNamespace="http://www.eti.pg.gda.pl/kask/javaee/books" xmlns:tns="http://www.eti.pg.gda.pl/kask/javaee/books" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="authors" type="tns:authors"/>
+
+  <xs:element name="library" type="tns:library"/>
+
+  <xs:complexType name="library">
+    <xs:sequence>
+      <xs:element name="book" type="tns:book" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="book">
+    <xs:complexContent>
+      <xs:extension base="tns:audit">
+        <xs:sequence>
+          <xs:element name="author" type="tns:author" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="owner" type="tns:user" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:int"/>
+        <xs:attribute name="title" type="xs:string"/>
+        <xs:attribute name="cover" type="tns:cover"/>
+        <xs:attribute name="publishDate" type="xs:dateTime"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="audit">
+    <xs:sequence>
+      <xs:element name="modificationDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="version" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="author">
+    <xs:complexContent>
+      <xs:extension base="tns:audit">
+        <xs:sequence/>
+        <xs:attribute name="id" type="xs:int"/>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="surname" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="user">
+    <xs:sequence/>
+    <xs:attribute name="id" type="xs:int"/>
+    <xs:attribute name="login" type="xs:string"/>
+    <xs:attribute name="group" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="authors">
+    <xs:sequence>
+      <xs:element name="author" type="tns:author" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="cover">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="HARD"/>
+      <xs:enumeration value="SOFT"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+

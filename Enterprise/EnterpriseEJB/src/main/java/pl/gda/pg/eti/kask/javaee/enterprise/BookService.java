@@ -80,14 +80,5 @@ public class BookService implements Serializable {
     }
 
     public void marshalLibrary(OutputStream out) {
-        try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(ObjectFactory.class.getPackage().getName());
-            Marshaller m = jaxbContext.createMarshaller();
-            Library library = new Library();
-            library.getBooks().addAll(findAllBooks());
-            m.marshal(library, out);
-        } catch (JAXBException ex) {
-            log.log(Level.WARNING, ex.getMessage(), ex);
-        }
     }
 }

@@ -105,17 +105,19 @@ public class TowerService {
     }
 
     @RolesAllowed({"Admin", "User"})
-    public void saveTower(Tower tower) {
+    public Tower saveTower(Tower tower) {
         System.out.println("IDDDD: " + tower.getId());
         if (tower.getId() == null) {
             em.persist(tower);
             tower.setUser(userService.getCurrentUser());
+            return tower;
         } else if (userService.canAccess(tower.getUser())) {
             if (tower.getUser() == null) {
                 tower.setUser(userService.getCurrentUser());
             }
-            em.merge(tower);
+            return em.merge(tower);
         }
+        return null;
     }
 
     @Zachlannosc

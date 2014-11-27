@@ -33,16 +33,13 @@ public class Tower implements Serializable {
     @Column
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @XmlTransient
     protected Integer id;
     @Column
-    @XmlTransient
     protected String name;
     @Column
-    @XmlTransient
     protected Integer height;
-    @XmlTransient
     @ManyToOne()
+    @XmlTransient
     @JoinColumn(name = "user_id")
     protected User user;
 
