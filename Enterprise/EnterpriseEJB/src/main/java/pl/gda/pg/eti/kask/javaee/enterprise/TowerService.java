@@ -29,6 +29,7 @@ public class TowerService {
     Event<Sorcerer> newSorcerer;
     @EJB
     private UserService userService;
+
     public EntityManager getEm() {
         return em;
     }
@@ -122,15 +123,17 @@ public class TowerService {
 
     @Zachlannosc
     @RolesAllowed({"Admin", "User"})
-    public void saveWizzard(Sorcerer wizzard) {
+    public Sorcerer saveWizzard(Sorcerer wizzard) {
         if (userService.canAccess(wizzard.getTower().getUser())) {
             if (wizzard.getId() == null) {
                 em.persist(wizzard);
                 newSorcerer.fire(wizzard);
+                return wizzard;
             } else {
-                em.merge(wizzard);
+                return em.merge(wizzard);
             }
         }
+        return null;
     }
 
 }

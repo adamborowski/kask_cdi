@@ -24,6 +24,7 @@ import javax.xml.namespace.QName;
 import lombok.extern.java.Log;
 import pl.gda.pg.eti.kask.javaee.enterprise.authorization.AuthorizeRole;
 import pl.gda.pg.eti.kask.javaee.enterprise.entities.Library;
+import pl.gda.pg.eti.kask.javaee.enterprise.entities.Sorcerer;
 import pl.gda.pg.eti.kask.javaee.enterprise.entities.Tower;
 import pl.gda.pg.eti.kask.javaee.enterprise.error.HandleError;
 
@@ -119,6 +120,16 @@ public class BookResource {
     @HandleError
     public Response saveNewTower(Tower tower) {
         tower = towerService.saveTower(tower);
+        return Response.status(Response.Status.CREATED).build();
+    }
+    
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/wizzard/new")
+    @AuthorizeRole(roles = {"Admin", "User"})
+    @HandleError
+    public Response saveNewWizzard(Sorcerer wizzard) {
+        wizzard = towerService.saveTower(wizzard);
         return Response.status(Response.Status.CREATED).build();
     }
 
