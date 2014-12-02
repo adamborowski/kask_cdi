@@ -34,7 +34,7 @@ public class BookResourceStub {
         return root.request(MediaType.APPLICATION_JSON_TYPE).get(Library.class);
     }
     
-    public int saveNewBook(Tower tower) {
+    public int saveNewTower(Tower tower) {
         return root.request().post(Entity.entity(tower, MediaType.APPLICATION_JSON_TYPE)).getStatus();
     }
     

@@ -24,20 +24,25 @@ public class App {
 
         BookResourceStub stub = new BookResourceStub("https://localhost:8181/EnterpriseREST", "admin", "admin", sslConfig);
 
+        int rand = (int) (Math.random() * 1000);
+        Tower tower = new Tower();
+        tower.setName("Tower " + rand);
+        stub.saveNewTower(tower);
+
+        System.out.println("Dodany tower: " + tower);
+
         List<Tower> towers = stub.findTowers().getTowers();
-        
-        System.out.println("WIEZE::");
+
+        System.out.println("odczytane WIEZE::");
         for (Tower book : towers) {
             System.out.println(book);
         }
-        
-        
+
 //        Book book = new Book();
 //        book.setTitle("Całkiem nowa ksiązka z klienta");
 //        book.setPublishDate(DateUtils.setYears(new Date(), 2010));
 //        book.getAuthors().add(authors.get(0));
 //        System.out.println(stub.saveNewBook(book));
-        
 //        System.out.println(stub.saveNewAuthor("Michał", "Wójcik"));
     }
 }

@@ -119,7 +119,7 @@ public class BookResource {
     @HandleError
     public Response saveNewTower(Tower tower) {
         tower = towerService.saveTower(tower);
-        return Response.status(Response.Status.CREATED).header("Location", "tower/" + tower.getId()).build();
+        return Response.status(Response.Status.CREATED).build();
     }
 
     @PUT
