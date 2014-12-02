@@ -9,9 +9,8 @@ import javax.ws.rs.core.Form;
 import javax.ws.rs.core.MediaType;
 import org.glassfish.jersey.SslConfigurator;
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
-import pl.gda.pg.eti.kask.javaee.enterprise.entities.Authors;
-import pl.gda.pg.eti.kask.javaee.enterprise.entities.Book;
 import pl.gda.pg.eti.kask.javaee.enterprise.entities.Library;
+import pl.gda.pg.eti.kask.javaee.enterprise.entities.Tower;
 
 /**
  *
@@ -28,20 +27,17 @@ public class BookResourceStub {
         client = ClientBuilder.newBuilder().sslContext(sslContext).build();
         HttpAuthenticationFeature feature = HttpAuthenticationFeature.basic(login, password);
         client.register(feature);
-        root = client.target(baseAddress + "/resources/books");
+        root = client.target(baseAddress + "/resources/towers");
     }
 
-    public Library findBooks(int offset, int limit) {
-        return root.queryParam("offset", offset).queryParam("limit", limit).request(MediaType.APPLICATION_JSON_TYPE).get(Library.class);
+    public Library findTowers() {
+        return root.request(MediaType.APPLICATION_JSON_TYPE).get(Library.class);
     }
     
-    public int saveNewBook(Book book) {
-        return root.request().post(Entity.entity(book, MediaType.APPLICATION_JSON_TYPE)).getStatus();
+    public int saveNewBook(Tower tower) {
+        return root.request().post(Entity.entity(tower, MediaType.APPLICATION_JSON_TYPE)).getStatus();
     }
     
-    public Authors findAuthors() {
-        return root.path("/authors").request(MediaType.APPLICATION_JSON).get(Authors.class);
-    }
     
     public int saveNewAuthor(String name, String surname) {
         Form form = new Form();

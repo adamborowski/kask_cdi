@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 import org.apache.commons.lang3.time.DateUtils;
 import org.glassfish.jersey.SslConfigurator;
-import pl.gda.pg.eti.kask.javaee.enterprise.entities.Author;
+import pl.gda.pg.eti.kask.javaee.enterprise.entities.Tower;
 import pl.gda.pg.eti.kask.javaee.enterprise.entities.Book;
 
 /**
@@ -22,22 +22,22 @@ public class App {
                 .keyStoreFile("./keystore.jks")
                 .keyPassword("changeit");
 
-        BookResourceStub stub = new BookResourceStub("https://llolth:8181/RESTServices", "psysiu", "psysiu", sslConfig);
+        BookResourceStub stub = new BookResourceStub("https://localhost:8181/EnterpriseREST", "admin", "admin", sslConfig);
 
-        List<Book> books = stub.findBooks(0, 2).getBooks();
+        List<Tower> towers = stub.findTowers().getTowers();
         
-        for (Book book : books) {
+        System.out.println("WIEZE::");
+        for (Tower book : towers) {
             System.out.println(book);
         }
         
-        List<Author> authors = stub.findAuthors().getAuthors();
         
-        Book book = new Book();
-        book.setTitle("Całkiem nowa ksiązka z klienta");
-        book.setPublishDate(DateUtils.setYears(new Date(), 2010));
-        book.getAuthors().add(authors.get(0));
-        System.out.println(stub.saveNewBook(book));
+//        Book book = new Book();
+//        book.setTitle("Całkiem nowa ksiązka z klienta");
+//        book.setPublishDate(DateUtils.setYears(new Date(), 2010));
+//        book.getAuthors().add(authors.get(0));
+//        System.out.println(stub.saveNewBook(book));
         
-        System.out.println(stub.saveNewAuthor("Michał", "Wójcik"));
+//        System.out.println(stub.saveNewAuthor("Michał", "Wójcik"));
     }
 }
