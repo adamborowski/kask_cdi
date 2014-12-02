@@ -6,8 +6,8 @@ CLIENT_STORE_PASS=changeit
 CLIENT_TRUSTSTORE_PASS=changeit
 CLIENT_KEY_PASS=changeit
 CLIENT_DOMAIN_NAME="cn=Worker, ou=Enterprise, o=KASK, c=PL"
-GF_HOME=/home/psysiu/apps/glassfish-4.1
-GF_DOMAIN=javaee
+GF_HOME=/home/adam/pf/glassfish4
+GF_DOMAIN=domain1
 GF_STORE_PASS=changeit
 GF_ALIAS=s1as
 
