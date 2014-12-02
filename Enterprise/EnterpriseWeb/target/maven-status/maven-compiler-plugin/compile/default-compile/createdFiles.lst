@@ -1,7 +1,7 @@
-pl/adamborowski/kask/jsf/view/validators/PasswordValidator.class
 pl/adamborowski/kask/jsf/view/EditUser.class
-service/TowerFacadeREST.class
+pl/adamborowski/kask/jsf/view/validators/PasswordValidator.class
 pl/adamborowski/kask/jsf/view/ListTowers.class
+service/TowerFacadeREST.class
 service/AbstractFacade.class
 pl/gda/pg/eti/kask/javaee/enterprise/ranking/RankingResource.class
 pl/gda/pg/eti/kask/javaee/enterprise/view/validators/BookTitleValidator.class
@@ -16,8 +16,8 @@ service/UserFacadeREST.class
 service/ApplicationConfig.class
 pl/adamborowski/kask/jsf/view/EditTower.class
 pl/adamborowski/kask/jsf/view/EditWizzard.class
-pl/gda/pg/eti/kask/javaee/enterprise/ranking/view/ListTopBooks.class
 pl/adamborowski/kask/jsf/view/converters/TowerConverter.class
+pl/gda/pg/eti/kask/javaee/enterprise/ranking/view/ListTopBooks.class
 service/SorcererFacadeREST.class
 pl/adamborowski/kask/jsf/view/ViewWizzard.class
 pl/adamborowski/kask/jsf/view/validators/BookTitleValidator.class
