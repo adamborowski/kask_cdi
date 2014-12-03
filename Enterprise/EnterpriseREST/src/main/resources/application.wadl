@@ -12,6 +12,10 @@
                 id="saveNewTower" name="POST"><request><representation
                         mediaType="application/json"/></request><response><representation
                 mediaType="*/*"/></response></method><resource
+                    path="/multikulti"><method id="findMultiKulti"
+                            name="GET"><response><representation
+                            mediaType="application/xml"/><representation
+                mediaType="application/json"/></response></method></resource><resource
                     path="/{id:[0-9]+}"><param name="id"
                     style="template" type="xs:int"
                     xmlns:xs="http://www.w3.org/2001/XMLSchema"/><method

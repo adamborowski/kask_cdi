@@ -1,6 +1,7 @@
 package pl.gda.pg.eti.kask.javaee.enterprise;
 
-import java.util.logging.Level;
+import java.util.List;
+import java.util.Locale;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.enterprise.context.RequestScoped;
@@ -18,8 +19,10 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
+import javax.ws.rs.core.Variant;
 import javax.xml.bind.JAXBElement;
 import javax.xml.namespace.QName;
 import lombok.extern.java.Log;
@@ -67,11 +70,45 @@ public class BookResource {
     @AuthorizeRole(roles = {"Admin", "User"})
     @Path("/")
     public Response findTowers() {
+
         if (sc.isUserInRole("Admin") || sc.isUserInRole("User")) {
             return Response.ok(new Library(towerService.findAllTowers())).build();
         } else {
             return Response.status(Response.Status.UNAUTHORIZED).build();
         }
+    }
+
+    @GET
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @AuthorizeRole(roles = {"Admin", "User"})
+    @Path("/multikulti")
+    public Response findMultiKulti(@Context Request request) {
+
+        List<Variant> vs = Variant
+                .mediaTypes(MediaType.APPLICATION_JSON_TYPE)
+                .languages(Locale.ENGLISH, Locale.forLanguageTag("pl"), Locale.CHINESE, Locale.GERMAN)
+                .add().build();
+
+        if (sc.isUserInRole("Admin") || sc.isUserInRole("User")) {
+            final List<Tower> allTowers = towerService.findAllTowers();
+
+            Variant v = request.selectVariant(vs);
+            if (null == v) {
+                return Response.notAcceptable(vs).build();
+            } else {
+                String  s= v.getLanguageString()+"_";
+                for(Tower t:allTowers){
+                    t.setName(s+t.getName());
+                    for(Sorcerer w:t.getWizzards())
+                    {
+                        w.setName(s+w.getName());
+                    }
+                }
+                return Response.ok(new Library(allTowers)).build();
+            }
+        }
+        return Response.status(Response.Status.UNAUTHORIZED).build();
+
     }
 
     @GET
