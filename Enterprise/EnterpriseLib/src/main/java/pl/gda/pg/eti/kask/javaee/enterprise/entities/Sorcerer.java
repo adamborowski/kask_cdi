@@ -21,7 +21,8 @@ import javax.xml.bind.annotation.*;
     @NamedQuery(name = "Sorcerer.findBest", query = "SELECT b FROM Sorcerer b ORDER BY b.mana desc"),
     @NamedQuery(name = "Sorcerer.training", query = "UPDATE Sorcerer b set b.mana=b.mana+:amount")
 })
-@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "wizzard")
 public class Sorcerer implements Serializable {
 
     @Column

@@ -1,11 +1,7 @@
 /home/adam/projekty/kask_cdi/Enterprise/EnterpriseWeb/src/main/java/pl/adamborowski/kask/jsf/view/EditUser.java
-/home/adam/projekty/kask_cdi/Enterprise/EnterpriseWeb/src/main/java/pl/gda/pg/eti/kask/javaee/enterprise/view/ViewBook.java
 /home/adam/projekty/kask_cdi/Enterprise/EnterpriseWeb/src/main/java/pl/adamborowski/kask/jsf/view/EditWizzard.java
-/home/adam/projekty/kask_cdi/Enterprise/EnterpriseWeb/src/main/java/service/ApplicationConfig.java
 /home/adam/projekty/kask_cdi/Enterprise/EnterpriseWeb/src/main/java/pl/gda/pg/eti/kask/javaee/enterprise/ranking/SortedTopBooks.java
 /home/adam/projekty/kask_cdi/Enterprise/EnterpriseWeb/src/main/java/pl/gda/pg/eti/kask/javaee/enterprise/ranking/RankingResource.java
-/home/adam/projekty/kask_cdi/Enterprise/EnterpriseWeb/src/main/java/service/SorcererFacadeREST.java
-/home/adam/projekty/kask_cdi/Enterprise/EnterpriseWeb/src/main/java/pl/gda/pg/eti/kask/javaee/enterprise/view/ListBooks.java
 /home/adam/projekty/kask_cdi/Enterprise/EnterpriseWeb/src/main/java/pl/gda/pg/eti/kask/javaee/enterprise/ranking/BookList.java
 /home/adam/projekty/kask_cdi/Enterprise/EnterpriseWeb/src/main/java/pl/adamborowski/kask/jsf/view/ViewWizzard.java
 /home/adam/projekty/kask_cdi/Enterprise/EnterpriseWeb/src/main/java/pl/adamborowski/kask/jsf/view/validators/PasswordValidator.java
@@ -13,10 +9,7 @@
 /home/adam/projekty/kask_cdi/Enterprise/EnterpriseWeb/src/main/java/pl/adamborowski/kask/jsf/view/ViewTower.java
 /home/adam/projekty/kask_cdi/Enterprise/EnterpriseWeb/src/main/java/pl/gda/pg/eti/kask/javaee/enterprise/ranking/TopBooks.java
 /home/adam/projekty/kask_cdi/Enterprise/EnterpriseWeb/src/main/java/pl/adamborowski/kask/jsf/view/ListTowers.java
-/home/adam/projekty/kask_cdi/Enterprise/EnterpriseWeb/src/main/java/service/TowerFacadeREST.java
 /home/adam/projekty/kask_cdi/Enterprise/EnterpriseWeb/src/main/java/pl/gda/pg/eti/kask/javaee/enterprise/view/converters/PasswordConverter.java
-/home/adam/projekty/kask_cdi/Enterprise/EnterpriseWeb/src/main/java/service/AbstractFacade.java
-/home/adam/projekty/kask_cdi/Enterprise/EnterpriseWeb/src/main/java/service/UserFacadeREST.java
 /home/adam/projekty/kask_cdi/Enterprise/EnterpriseWeb/src/main/java/pl/gda/pg/eti/kask/javaee/enterprise/view/validators/BookTitleValidator.java
 /home/adam/projekty/kask_cdi/Enterprise/EnterpriseWeb/src/main/java/pl/adamborowski/kask/jsf/view/EditTower.java
 /home/adam/projekty/kask_cdi/Enterprise/EnterpriseWeb/src/main/java/pl/gda/pg/eti/kask/javaee/enterprise/view/ListUsers.java

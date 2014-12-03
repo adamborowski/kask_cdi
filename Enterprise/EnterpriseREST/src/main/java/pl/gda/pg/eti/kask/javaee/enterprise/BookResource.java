@@ -1,5 +1,6 @@
 package pl.gda.pg.eti.kask.javaee.enterprise;
 
+import java.util.logging.Level;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.enterprise.context.RequestScoped;
@@ -64,10 +65,9 @@ public class BookResource {
     @GET
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     @Path("/")
-//    @RolesAllowed({"Admin", "User"})
     public Response findTowers() {
         if (sc.isUserInRole("Admin") || sc.isUserInRole("User")) {
-                return Response.ok(new Library(towerService.findAllTowers())).build();
+            return Response.ok(new Library(towerService.findAllTowers())).build();
         } else {
             return Response.status(Response.Status.UNAUTHORIZED).build();
         }
@@ -122,14 +122,16 @@ public class BookResource {
         tower = towerService.saveTower(tower);
         return Response.status(Response.Status.CREATED).build();
     }
-    
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/wizzard/new")
+    @Path("/tower/{towerId: [0-9]+}/wizzards/new")
     @AuthorizeRole(roles = {"Admin", "User"})
     @HandleError
-    public Response saveNewWizzard(Sorcerer wizzard) {
-        wizzard = towerService.saveTower(wizzard);
+    public Response saveNewWizzard(@PathParam("towerId") int id, Sorcerer wizzard) {
+        Tower tower = towerService.findTower(id);
+        wizzard.setTower(tower);
+        wizzard = towerService.saveWizzard(wizzard);
         return Response.status(Response.Status.CREATED).build();
     }
 

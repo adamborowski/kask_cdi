@@ -10,6 +10,7 @@ import javax.ws.rs.core.MediaType;
 import org.glassfish.jersey.SslConfigurator;
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 import pl.gda.pg.eti.kask.javaee.enterprise.entities.Library;
+import pl.gda.pg.eti.kask.javaee.enterprise.entities.Sorcerer;
 import pl.gda.pg.eti.kask.javaee.enterprise.entities.Tower;
 
 /**
@@ -33,12 +34,19 @@ public class BookResourceStub {
     public Library findTowers() {
         return root.request(MediaType.APPLICATION_JSON_TYPE).get(Library.class);
     }
-    
+
     public int saveNewTower(Tower tower) {
         return root.request().post(Entity.entity(tower, MediaType.APPLICATION_JSON_TYPE)).getStatus();
     }
-    
-    
+
+    public int saveNewWizzard(int towerId, Sorcerer wizzard) {
+        return root.path("/tower/{towerId: [0-9]+}/wizzards/new")
+                .resolveTemplate("towerId", towerId)
+                .request()
+                .post(Entity.entity(wizzard, MediaType.APPLICATION_JSON_TYPE))
+                .getStatus();
+    }
+
     public int saveNewAuthor(String name, String surname) {
         Form form = new Form();
         form.param("name", name);

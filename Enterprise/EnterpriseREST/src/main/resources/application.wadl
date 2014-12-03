@@ -5,13 +5,13 @@
         title="A message in the WADL"
         xml:lang="en"><![CDATA[This is added to the start of the generated application.wadl]]></doc><grammars/><resources
             base="https://localhost:8181/EnterpriseREST"><resource
-                path="/towers"><method id="findTowers"
-                        name="GET"><response><representation
-                        mediaType="application/xml"/><representation
-                mediaType="application/json"/></response></method><method
-                id="saveNewTower" name="POST"><request><representation
+                path="/towers"><method id="saveNewTower"
+                        name="POST"><request><representation
                         mediaType="application/json"/></request><response><representation
-                mediaType="*/*"/></response></method><resource
+                mediaType="*/*"/></response></method><method
+                id="findTowers" name="GET"><response><representation
+                        mediaType="application/xml"/><representation
+                mediaType="application/json"/></response></method><resource
                     path="/{id:[0-9]+}"><param name="id"
                     style="template" type="xs:int"
                     xmlns:xs="http://www.w3.org/2001/XMLSchema"/><method
@@ -25,4 +25,11 @@
                             mediaType="application/json"/></request><response><representation
                     mediaType="*/*"/></response></method><method
                     id="deleteTower"
-                            name="DELETE"><response><representation mediaType="*/*"/></response></method></resource></resource></resources></application>
+                            name="DELETE"><response><representation
+                mediaType="*/*"/></response></method></resource><resource
+                    path="/tower/{towerId: [0-9]+}/wizzards/new"><param
+                    name="towerId" style="template" type="xs:int"
+                    xmlns:xs="http://www.w3.org/2001/XMLSchema"/><method
+                    id="saveNewWizzard"
+                            name="POST"><request><representation
+                            mediaType="application/json"/></request><response><representation mediaType="*/*"/></response></method></resource></resource></resources></application>

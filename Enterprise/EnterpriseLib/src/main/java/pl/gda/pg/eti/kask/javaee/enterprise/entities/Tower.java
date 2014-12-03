@@ -24,11 +24,11 @@ import javax.xml.bind.annotation.XmlType;
 @Table(name = "towers")
 @NamedQuery(name = "Tower.findAll", query = "SELECT b FROM Tower b")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "author")
+@XmlType(name = "tower")
 public class Tower implements Serializable {
 
     @OneToMany(mappedBy = "tower", cascade = CascadeType.ALL)
-    @XmlTransient
+    @XmlElement(name = "wizzard")
     protected List<Sorcerer> wizzards = new ArrayList<>();
     @Column
     @Id
