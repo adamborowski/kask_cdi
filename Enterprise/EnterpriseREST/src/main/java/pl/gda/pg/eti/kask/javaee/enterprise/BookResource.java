@@ -64,6 +64,7 @@ public class BookResource {
 
     @GET
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @AuthorizeRole(roles = {"Admin", "User"})
     @Path("/")
     public Response findTowers() {
         if (sc.isUserInRole("Admin") || sc.isUserInRole("User")) {
@@ -75,6 +76,7 @@ public class BookResource {
 
     @GET
     @Produces({MediaType.APPLICATION_JSON})
+    @AuthorizeRole(roles = {"Admin", "User"})
     @Path("/{id:[0-9]+}")
     public Response findTowerJson(@PathParam("id") Integer id) {
         if (sc.isUserInRole("Admin") || sc.isUserInRole("User")) {
